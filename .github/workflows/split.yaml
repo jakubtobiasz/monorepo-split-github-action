@@ -11,8 +11,15 @@ on:
 
     pull_request: null
 
+    workflow_dispatch: ~
+
     release:
         types: [created]
+
+permissions: write-all
+
+env:
+    GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 jobs:
     split_test:
@@ -21,6 +28,8 @@ jobs:
         steps:
             -
                 uses: actions/checkout@v2
+                with:
+                    fetch-depth: 0
 
             -
                 # run action.yaml in the root directory
@@ -30,9 +39,9 @@ jobs:
                     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
                 with:
                     package_directory: 'tests/packages/some-package'
-                    repository_organization: 'symplify'
+                    repository_organization: 'jakubtobiasz'
                     repository_name: 'monorepo-split-github-action-test'
 
                     # change to use that should be signed under the split commit
-                    user_name: 'kaizen-ci'
-                    user_email: 'info@kaizen-ci.org'
+                    user_name: "jakubtobiasz"
+                    user_email: "jakub.tobiasz@icloud.com"

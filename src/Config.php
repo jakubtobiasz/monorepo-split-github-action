@@ -61,4 +61,9 @@ final class Config
     {
         return $this->repositoryHost . '/' . $this->repositoryOrganization . '/' . $this->repositoryName . '.git';
     }
+
+    public function getGitRepositorySsh(): string
+    {
+        return sprintf('git@%s:%s/%s.git', $this->repositoryHost, $this->repositoryOrganization, $this->repositoryName);
+    }
 }
