@@ -20,6 +20,8 @@ try {
 
 setupGitCredentials($config);
 
+print_r(exec('ls -la /github/workspace'));
+
 $baseDir = getcwd();
 $targetRepository = $config->getGitRepositorySsh();
 $workingDirectory = sprintf('%s/%s', sys_get_temp_dir(), 'monorepo_split');
